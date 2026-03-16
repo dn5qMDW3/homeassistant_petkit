@@ -33,7 +33,6 @@ from .agora_rtm import AgoraRTMSignaling
 from .agora_websocket import AgoraWebSocketHandler
 from .const import (
     AGORA_APP_ID,
-    CONF_ALWAYS_ON_STREAM,
     CONF_STREAM_CONTROL_MODE,
     DEFAULT_ALWAYS_ON_STREAM,
     DEFAULT_STREAM_CONTROL_MODE,
@@ -638,14 +637,10 @@ class PetkitWebRTCCamera(PetkitCameraBaseEntity):
             return DEFAULT_STREAM_CONTROL_MODE
         return mode
 
-    def _always_on_stream_enabled(self) -> bool:
+    @staticmethod
+    def _always_on_stream_enabled() -> bool:
         """Return whether the rebroadcast session should stay prewarmed."""
-        return bool(
-            self.coordinator.config_entry.options.get(
-                CONF_ALWAYS_ON_STREAM,
-                DEFAULT_ALWAYS_ON_STREAM,
-            )
-        )
+        return DEFAULT_ALWAYS_ON_STREAM
 
     async def _refresh_rtc_token(self) -> str | None:
         """Fetch fresh live feed tokens and return the latest RTC token."""

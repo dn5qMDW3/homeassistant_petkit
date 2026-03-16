@@ -20,7 +20,6 @@ BT_SECTION = "bluetooth_options"
 CONF_BLE_RELAY_ENABLED = "ble_relay_enabled"
 CONF_SCAN_INTERVAL_BLUETOOTH = "scan_interval_bluetooth"
 CONF_STREAM_CONTROL_MODE = "stream_control_mode"
-CONF_ALWAYS_ON_STREAM = "always_on_stream"
 
 MEDIA_SECTION = "medias_options"
 CONF_MEDIA_DL_VIDEO = "media_dl_video"
