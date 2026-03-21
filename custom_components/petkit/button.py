@@ -16,6 +16,7 @@ from pypetkitapi import (
     DEVICES_LITTER_BOX,
     DEVICES_WATER_FOUNTAIN,
     LITTER_WITH_CAMERA,
+    T3,
     T4,
     T5,
     T6,
@@ -202,7 +203,7 @@ BUTTON_MAPPING: dict[type[PetkitDevices], list[PetKitButtonDesc]] = {
                 DeviceCommand.CONTROL_DEVICE,
                 {DeviceAction.START: LBCommand.ODOR_REMOVAL},
             ),
-            only_for_types=[T4],
+            only_for_types=[T3, T4],
             value=lambda device: device.k3_device,
         ),
         PetKitButtonDesc(
