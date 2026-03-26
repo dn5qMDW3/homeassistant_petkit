@@ -143,11 +143,20 @@
       "action_pause": {
         "name": "动作 : 暂停"
       },
+      "pause": {
+        "name": "暂停"
+      },
+      "resume": {
+        "name": "继续"
+      },
       "action_reset": {
         "name": "动作 : 复位"
       },
       "call_pet": {
         "name": "呼唤宠物"
+      },
+      "play_sound": {
+        "name": "播放声音"
       },
       "cancel_manual_feed": {
         "name": "取消手动加餐"
@@ -184,6 +193,18 @@
       },
       "reset_filter": {
         "name": "复位滤芯"
+      },
+      "ptz_left": {
+        "name": "PTZ 左转"
+      },
+      "ptz_right": {
+        "name": "PTZ 右转"
+      },
+      "ptz_stop": {
+        "name": "PTZ 停止"
+      },
+      "ptz_flip": {
+        "name": "PTZ 翻转"
       }
     },
     "fan": {
@@ -260,6 +281,9 @@
     "sensor": {
       "urine_measured_ph": {
         "name": "尿液pH值"
+      },
+      "device_id": {
+        "name": "设备ID"
       },
       "pet_last_urination_date": {
         "name": "上次排尿"
@@ -525,6 +549,29 @@
       },
       "total_time": {
         "name": "总使用时间"
+      },
+      "garbage_bag_box_state": {
+        "name": "垃圾袋盒",
+        "state": {
+          "normal": "正常",
+          "running_out": "即将用完",
+          "used_up": "已用完",
+          "expired": "已过期",
+          "not_available": "不可用",
+          "not_installed": "未安装"
+        }
+      },
+      "purification_n60_left_days": {
+        "name": "净味小方N60剩余天数"
+      },
+      "last_pack_time": {
+        "name": "上次打包时间"
+      },
+      "last_bag_replacement_time": {
+        "name": "上次垃圾袋更换时间"
+      },
+      "sand_tray_left_days": {
+        "name": "猫砂托盘剩余天数"
       }
     },
     "switch": {
@@ -731,13 +778,10 @@
         "data": {
           "always_on_stream": "常开转播流",
           "region": "区域",
-          "scan_interval": "默认轮询间隔（秒）",
-          "smart_polling": "智能轮询",
           "time_zone": "时区"
         },
         "data_description": {
-          "always_on_stream": "保持内部转播会话处于预热状态，让浏览器观看、WHEP 客户端以及此摄像头的通用流消费者都能更快连接。该转播流也可以被其他消费者复用。这样会持续维持一个上游会话，并占用更多设备和云端资源。",
-          "smart_polling": "智能轮询会根据设备的事件/操作自动调整轮询间隔。"
+          "always_on_stream": "保持内部转播会话处于预热状态，让浏览器观看、WHEP 客户端以及此摄像头的通用流消费者都能更快连接。该转播流也可以被其他消费者复用。这样会持续维持一个上游会话，并占用更多设备和云端资源。"
         },
         "sections": {
           "bluetooth_options": {
