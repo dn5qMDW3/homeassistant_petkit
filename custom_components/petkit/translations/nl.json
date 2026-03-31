@@ -1,0 +1,822 @@
+{
+  "config": {
+    "error": {
+      "account_exists": "Dit account bestaat al.",
+      "connection": "Kan geen verbinding maken met de server.",
+      "unknown": "Er is een onbekende fout opgetreden, controleer de logbestanden."
+    },
+    "step": {
+      "user": {
+        "data": {
+          "password": "Wachtwoord",
+          "region": "Regio",
+          "time_zone": "Tijdzone",
+          "username": "Gebruikersnaam/ID"
+        },
+        "data_description": {
+          "region": "Dit veld wordt automatisch ingevuld op basis van uw Home Assistant-configuratie. Als u een andere regio heeft, selecteer deze dan uit de lijst.",
+          "time_zone": "Dit veld wordt automatisch ingevuld op basis van uw Home Assistant-configuratie. Als u een andere tijdzone heeft, selecteer deze dan uit de lijst.",
+          "username": "Voer uw PetKit account e-mailadres in, of ID als u een Chinese gebruiker bent"
+        },
+        "description": "Voer uw PetKit-accountgegevens in. Gebruik NIET hetzelfde account als in de PetKit-app op uw smartphone. Raadpleeg de documentatie voor meer informatie."
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "yowling_detected": {
+        "name": "Miauwen gedetecteerd"
+      },
+      "abnormal_ph_detected": {
+        "name": "Abnormale pH gedetecteerd"
+      },
+      "soft_stool_detected": {
+        "name": "Zachte ontlasting gedetecteerd"
+      },
+      "battery": {
+        "name": "Batterij"
+      },
+      "weight_error": {
+        "name": "Gewichtsfout"
+      },
+      "pet_error": {
+        "name": "Huisdierenfout"
+      },
+      "light": {
+        "name": "Licht"
+      },
+      "spray": {
+        "name": "Spray"
+      },
+      "battery_installed": {
+        "name": "Batterij geïnstalleerd"
+      },
+      "camera_status": {
+        "name": "Camerastatus"
+      },
+      "n60_deodorize_presence": {
+        "name": "N60 geurverwijderaar modulestatus"
+      },
+      "care_plus_subscription": {
+        "name": "Care+ abonnement"
+      },
+      "deodorizer": {
+        "name": "Geurverwijderaar"
+      },
+      "deodorization_running": {
+        "name": "Geurverwijdering"
+      },
+      "do_not_disturb_state": {
+        "name": "Niet storen"
+      },
+      "eating": {
+        "name": "Eten"
+      },
+      "feeding": {
+        "name": "Voeren"
+      },
+      "food_level": {
+        "name": "Voedingsniveau"
+      },
+      "food_level_1": {
+        "name": "Voedingsniveau bak 1"
+      },
+      "food_level_2": {
+        "name": "Voedingsniveau bak 2"
+      },
+      "frequent_use": {
+        "name": "Frequente gebruiksdetectie"
+      },
+      "lack_warning": {
+        "name": "Watertekort waarschuwing"
+      },
+      "pet_detected": {
+        "name": "Huisdier drinkt"
+      },
+      "pump_running": {
+        "name": "Pomp"
+      },
+      "liquid_lack": {
+        "name": "Vloeistofniveau"
+      },
+      "litter": {
+        "name": "Kattenbak vulling"
+      },
+      "low_battery": {
+        "name": "Lage batterij"
+      },
+      "low_power": {
+        "name": "Stroom"
+      },
+      "manually_paused": {
+        "name": "Handmatig gepauzeerd"
+      },
+      "on_ac_power": {
+        "name": "Op netstroom"
+      },
+      "pura_air_liquid": {
+        "name": "Pura Air vloeistof"
+      },
+      "replace_filter": {
+        "name": "Filter vervangen"
+      },
+      "sand_lack": {
+        "name": "Strooiseltekort"
+      },
+      "toilet_occupied": {
+        "name": "Toilet bezet"
+      },
+      "waste_bin": {
+        "name": "Afvalbak vol"
+      },
+      "waste_bin_presence": {
+        "name": "Afvalbak aanwezig"
+      },
+      "water_level": {
+        "name": "Waterniveau"
+      }
+    },
+    "button": {
+      "action_continue": {
+        "name": "Actie : Doorgaan"
+      },
+      "action_pause": {
+        "name": "Actie : Pauzeren"
+      },
+      "pause": {
+        "name": "Pauzeren"
+      },
+      "resume": {
+        "name": "Hervatten"
+      },
+      "action_reset": {
+        "name": "Actie : Resetten"
+      },
+      "call_pet": {
+        "name": "Huisdier roepen"
+      },
+      "play_sound": {
+        "name": "Geluid afspelen"
+      },
+      "cancel_manual_feed": {
+        "name": "Handmatig voeren annuleren"
+      },
+      "deodorize": {
+        "name": "Geur verwijderen"
+      },
+      "dump_litter": {
+        "name": "Kattenbak legen"
+      },
+      "exit_maintenance": {
+        "name": "Onderhoud : Beëindigen"
+      },
+      "food_replenished": {
+        "name": "Voeding aangevuld"
+      },
+      "reset_desiccant": {
+        "name": "Droogmiddel resetten"
+      },
+      "reset_n50_odor_eliminator": {
+        "name": "N50 geurverwijderaar resetten"
+      },
+      "reset_n60_odor_eliminator": {
+        "name": "N60 geurverwijderaar resetten"
+      },
+      "start_maintenance": {
+        "name": "Onderhoud : Starten"
+      },
+      "start_scoop": {
+        "name": "Schep"
+      },
+      "level_litter": {
+        "name": "Kattenbak gelijkmaken"
+      },
+      "reset_filter": {
+        "name": "Filter resetten"
+      },
+      "ptz_left": {
+        "name": "PTZ Links"
+      },
+      "ptz_right": {
+        "name": "PTZ Rechts"
+      },
+      "ptz_stop": {
+        "name": "PTZ Stop"
+      },
+      "ptz_flip": {
+        "name": "PTZ Omdraaien"
+      }
+    },
+    "fan": {
+      "air_purifier_fan": {
+        "name": "Luchtreiniger"
+      }
+    },
+    "image": {
+      "last_eat_event": {
+        "name": "Laatste eetgebeurtenis"
+      },
+      "last_feed_event": {
+        "name": "Laatste voergebeurtenis"
+      },
+      "last_toileting_event": {
+        "name": "Laatste toiletgebeurtenis"
+      },
+      "last_visit_event": {
+        "name": "Laatste bezoekgebeurtenis"
+      },
+      "dish_before": {
+        "name": "Schaal voor"
+      },
+      "dish_after": {
+        "name": "Schaal na"
+      },
+      "waste_check": {
+        "name": "Afvalcontrole"
+      }
+    },
+    "number": {
+      "cleaning_delay": {
+        "name": "Reinigingsvertraging"
+      },
+      "manual_feed": {
+        "name": "Handmatig voeren"
+      },
+      "min_eating_duration": {
+        "name": "Minimale eetduur"
+      },
+      "surplus": {
+        "name": "Overschot"
+      },
+      "volume": {
+        "name": "Volume"
+      }
+    },
+    "select": {
+      "avoid_repeat_cleaning_interval": {
+        "name": "Interval herhaald reinigen vermijden"
+      },
+      "eat_detection_sensitivity": {
+        "name": "AI eetdetectiegevoeligheid"
+      },
+      "litter_type": {
+        "name": "Strooiseltype"
+      },
+      "working_mode": {
+        "name": "Werkingsmodus"
+      },
+      "led_brightness": {
+        "name": "LED-helderheid"
+      },
+      "move_detection_sensitivity": {
+        "name": "Bewegingsdetectiegevoeligheid"
+      },
+      "pet_detection_sensitivity": {
+        "name": "AI huisdierdetectiegevoeligheid"
+      },
+      "surplus_level": {
+        "name": "Overschotbeheerniveau"
+      }
+    },
+    "sensor": {
+      "urine_measured_ph": {
+        "name": "Gemeten urine-pH"
+      },
+      "device_id": {
+        "name": "Apparaat-ID"
+      },
+      "pet_last_urination_date": {
+        "name": "Laatste urinering"
+      },
+      "pet_last_defecation_date": {
+        "name": "Laatste ontlasting"
+      },
+      "air_purified": {
+        "name": "Lucht gezuiverd"
+      },
+      "amount_eaten": {
+        "name": "Gegeten hoeveelheid"
+      },
+      "battery_voltage": {
+        "name": "Batterijspanning"
+      },
+      "supply_voltage": {
+        "name": "Voedingsspanning"
+      },
+      "average_time": {
+        "name": "Gemiddeld gebruik"
+      },
+      "avg_eating_time": {
+        "name": "Gemiddelde eettijd"
+      },
+      "battery_level": {
+        "name": "Batterijniveau"
+      },
+      "odor_eliminator_n50_left_days": {
+        "name": "N50 geurverwijderaar resterende dagen"
+      },
+      "odor_eliminator_n60_left_days": {
+        "name": "N60 geurverwijderaar resterende dagen"
+      },
+      "deodorizer_level": {
+        "name": "Geurverwijderaarniveau"
+      },
+      "desiccant_left_days": {
+        "name": "Droogmiddel resterende dagen"
+      },
+      "device_status": {
+        "name": "Apparaatstatus"
+      },
+      "drink_times": {
+        "name": "Drinktijden"
+      },
+      "end_date_care_plus_subscription": {
+        "name": "Care+ resterende dagen"
+      },
+      "error": {
+        "name": "Fout"
+      },
+      "battery": {
+        "name": "Batterij"
+      },
+      "error_message": {
+        "name": "Fout",
+        "state": {
+          "no_error": "Geen fout"
+        }
+      },
+      "feeder_error": {
+        "name": "Voederfout"
+      },
+      "filter_percent": {
+        "name": "Filter resterend"
+      },
+      "food_bowl_percentage": {
+        "name": "Vulling voederbak"
+      },
+      "food_in_bowl": {
+        "name": "Voeding in de bak"
+      },
+      "food_left": {
+        "name": "Voeding over"
+      },
+      "last_connection": {
+        "name": "Laatste BLE-verbinding"
+      },
+      "last_update": {
+        "name": "Laatste update"
+      },
+      "last_used_by": {
+        "name": "Laatst gebruikt door"
+      },
+      "litter_last_event": {
+        "name": "Laatste gebeurtenis",
+        "state": {
+          "auto_cleaning_canceled": "Automatisch reinigen geannuleerd",
+          "auto_cleaning_canceled_kitten": "Automatisch reinigen geannuleerd: kitten",
+          "auto_cleaning_completed": "Automatisch reinigen voltooid",
+          "auto_cleaning_failed_full": "Automatisch reinigen mislukt: vol",
+          "auto_cleaning_failed_hall_l": "Automatisch reinigen mislukt: hall L",
+          "auto_cleaning_failed_hall_t": "Automatisch reinigen mislukt: hall T",
+          "auto_cleaning_terminated": "Automatisch reinigen beëindigd",
+          "auto_odor_failed": "Automatische geurverwijdering mislukt",
+          "clean_over": "Gereinigd",
+          "deodorant_finished": "Geurverwijdering voltooid",
+          "deodorant_finished_liquid_lack": "Geurverwijdering voltooid: vloeistoftekort",
+          "light_over": "Licht",
+          "litter_empty_completed": "Kattenbak legen voltooid",
+          "litter_empty_failed_full": "Kattenbak legen mislukt: vol",
+          "litter_empty_failed_hall_l": "Kattenbak legen mislukt: hall L",
+          "litter_empty_failed_hall_t": "Kattenbak legen mislukt: hall T",
+          "litter_empty_terminated": "Kattenbak legen beëindigd",
+          "manual_cleaning_canceled": "Handmatig reinigen geannuleerd",
+          "manual_cleaning_completed": "Handmatig reinigen voltooid",
+          "manual_cleaning_failed_full": "Handmatig reinigen mislukt: vol",
+          "manual_cleaning_failed_hall_l": "Handmatig reinigen mislukt: hall L",
+          "manual_cleaning_failed_hall_t": "Handmatig reinigen mislukt: hall T",
+          "manual_cleaning_terminated": "Handmatig reinigen beëindigd",
+          "manual_odor_completed": "Handmatige geurbehandeling voltooid",
+          "manual_odor_completed_liquid_lack": "Handmatige geurbehandeling voltooid: vloeistoftekort",
+          "manual_odor_failed": "Handmatige geurbehandeling mislukt",
+          "periodic_cleaning_canceled": "Periodiek reinigen geannuleerd",
+          "periodic_cleaning_canceled_kitten": "Periodiek reinigen geannuleerd: kitten",
+          "periodic_cleaning_completed": "Periodiek reinigen voltooid",
+          "periodic_cleaning_terminated": "Periodiek reinigen beëindigd",
+          "periodic_odor_completed": "Periodieke geurverwijdering voltooid",
+          "periodic_odor_completed_liquid_lack": "Periodieke geurverwijdering voltooid: vloeistoftekort",
+          "periodic_odor_failed": "Periodieke geurverwijdering mislukt",
+          "pet_detect": "Huisdier gedetecteerd",
+          "pet_out": "Huisdier buiten",
+          "reset_completed": "Reset voltooid",
+          "reset_failed_full": "Reset mislukt: vol",
+          "reset_failed_hall_l": "Reset mislukt: hall L",
+          "reset_failed_hall_t": "Reset mislukt: hall T",
+          "reset_over": "Reset",
+          "reset_terminated": "Reset beëindigd",
+          "scheduled_cleaning_failed_full": "Gepland reinigen mislukt: vol",
+          "scheduled_cleaning_failed_hall_l": "Gepland reinigen mislukt: hall L",
+          "scheduled_cleaning_failed_hall_t": "Gepland reinigen mislukt: hall T",
+          "spray_over": "Geur verwijderen"
+        }
+      },
+      "litter_level": {
+        "name": "Strooiselniveau"
+      },
+      "litter_state": {
+        "name": "Status",
+        "state": {
+          "calibrating": "Kalibreren",
+          "cleaning": "Reinigen",
+          "cleaning_paused": "Reinigen gepauzeerd",
+          "cleaning_paused_cover": "Reinigen gepauzeerd - Deksel",
+          "cleaning_paused_pet_approach": "Reinigen gepauzeerd - Huisdier nadert",
+          "cleaning_paused_pet_entered": "Reinigen gepauzeerd - Huisdier ingestapt",
+          "cleaning_paused_pet_using": "Reinigen gepauzeerd - Huisdier in gebruik",
+          "cleaning_paused_system_error": "Reinigen gepauzeerd - Systeemfout",
+          "dumping": "Legen",
+          "dumping_paused": "Legen gepauzeerd",
+          "dumping_paused_cover": "Legen gepauzeerd - Deksel",
+          "dumping_paused_pet_approach": "Legen gepauzeerd - Huisdier nadert",
+          "dumping_paused_pet_entered": "Legen gepauzeerd - Huisdier ingestapt",
+          "dumping_paused_pet_using": "Legen gepauzeerd - Huisdier in gebruik",
+          "dumping_paused_system_error": "Legen gepauzeerd - Systeemfout",
+          "idle": "Inactief",
+          "leveling": "Egaliseren",
+          "maintenance": "Onderhoud",
+          "maintenance_paused": "Onderhoud gepauzeerd",
+          "maintenance_paused_cover": "Onderhoud gepauzeerd - Deksel",
+          "maintenance_paused_pet_approach": "Onderhoud gepauzeerd - Huisdier nadert",
+          "maintenance_paused_pet_entered": "Onderhoud gepauzeerd - Huisdier ingestapt",
+          "maintenance_paused_pet_using": "Onderhoud gepauzeerd - Huisdier in gebruik",
+          "maintenance_paused_system_error": "Onderhoud gepauzeerd - Systeemfout",
+          "paused": "Gepauzeerd",
+          "paused_cover": "Gepauzeerd - Deksel",
+          "paused_pet_approach": "Gepauzeerd - Huisdier nadert",
+          "paused_pet_entered": "Gepauzeerd - Huisdier ingestapt",
+          "paused_pet_using": "Gepauzeerd - Huisdier in gebruik",
+          "paused_system_error": "Gepauzeerd - Systeemfout",
+          "resetting": "Resetten",
+          "resetting_device": "Apparaat resetten",
+          "unknown": "Onbekend"
+        }
+      },
+      "litter_weight": {
+        "name": "Strooiselgewicht"
+      },
+      "manual_dispensed": {
+        "name": "Handmatig verstrekt"
+      },
+      "manual_dispensed_hopper_1": {
+        "name": "Handmatig verstrekt bak 1"
+      },
+      "manual_dispensed_hopper_2": {
+        "name": "Handmatig verstrekt bak 2"
+      },
+      "package_used": {
+        "name": "Pakket gebruikt"
+      },
+      "pet_last_device_used": {
+        "name": "Laatste kattenbak gebruikt"
+      },
+      "pet_last_use_date": {
+        "name": "Datum laatste gebruik"
+      },
+      "connection_state": {
+        "name": "Verbindingsstatus"
+      },
+      "pet_last_use_duration": {
+        "name": "Duur laatste gebruik"
+      },
+      "pet_last_weight_measurement": {
+        "name": "Laatste gewichtsmeting"
+      },
+      "planned_dispensed": {
+        "name": "Gepland verstrekt"
+      },
+      "planned_dispensed_hopper_1": {
+        "name": "Gepland verstrekt bak 1"
+      },
+      "planned_dispensed_hopper_2": {
+        "name": "Gepland verstrekt bak 2"
+      },
+      "purified_water": {
+        "name": "Gezuiverd water"
+      },
+      "purifier_liquid": {
+        "name": "Vloeistofniveau"
+      },
+      "raw_distribution_data": {
+        "name": "RAW distributiegegevens"
+      },
+      "rssi": {
+        "name": "RSSI"
+      },
+      "spray_times": {
+        "name": "Spraytijden"
+      },
+      "spray_deodorant_liquid": {
+        "name": "Spray deodorant vloeistof"
+      },
+      "times_dispensed": {
+        "name": "Aantal keren verstrekt"
+      },
+      "times_eaten": {
+        "name": "Aantal keren gegeten"
+      },
+      "times_used": {
+        "name": "Aantal keren gebruikt"
+      },
+      "total_dispensed": {
+        "name": "Totaal verstrekt"
+      },
+      "total_dispensed_hopper_1": {
+        "name": "Totaal verstrekt bak 1"
+      },
+      "total_dispensed_hopper_2": {
+        "name": "Totaal verstrekt bak 2"
+      },
+      "total_package": {
+        "name": "Totaal pakket"
+      },
+      "total_planned": {
+        "name": "Totaal gepland"
+      },
+      "total_planned_hopper_1": {
+        "name": "Totaal gepland bak 1"
+      },
+      "total_planned_hopper_2": {
+        "name": "Totaal gepland bak 2"
+      },
+      "total_time": {
+        "name": "Totaal gebruik"
+      },
+      "garbage_bag_box_state": {
+        "name": "Vuilniszakhouder",
+        "state": {
+          "normal": "Normaal",
+          "running_out": "Raakt op",
+          "used_up": "Opgebruikt",
+          "expired": "Verlopen",
+          "not_available": "Niet beschikbaar",
+          "not_installed": "Niet geïnstalleerd"
+        }
+      },
+      "purification_n60_left_days": {
+        "name": "N60 zuivering resterende dagen"
+      },
+      "last_pack_time": {
+        "name": "Laatste verpakkingstijd"
+      },
+      "last_bag_replacement_time": {
+        "name": "Laatste zakvervanging"
+      },
+      "sand_tray_left_days": {
+        "name": "Zandbak resterende dagen"
+      }
+    },
+    "switch": {
+      "soft_stool": {
+        "name": "AI zachte ontlasting detectie"
+      },
+      "soft_stool_stop_cleaning": {
+        "name": "Stoppen met reinigen bij zachte ontlasting"
+      },
+      "auto_clean": {
+        "name": "Automatisch reinigen"
+      },
+      "auto_deodor": {
+        "name": "Automatisch geuren verwijderen"
+      },
+      "avoid_repeat_clean": {
+        "name": "Herhaald reinigen vermijden"
+      },
+      "camera": {
+        "name": "Camera"
+      },
+      "child_lock": {
+        "name": "Kinderslot"
+      },
+      "cont_rotation": {
+        "name": "Continue rotatie"
+      },
+      "deep_cleaning": {
+        "name": "Dieptereiniging"
+      },
+      "deep_deodor": {
+        "name": "Diepe geurverwijdering"
+      },
+      "deodorant_n50_notify": {
+        "name": "Melding bij N50 vervanging nodig"
+      },
+      "deodorant_n60_notify": {
+        "name": "Melding bij N60 vervanging nodig"
+      },
+      "desiccant_notif": {
+        "name": "Melding bij droogmiddel vervanging nodig"
+      },
+      "dispensing_notif": {
+        "name": "Melding bij verstrekken"
+      },
+      "display": {
+        "name": "Weergave"
+      },
+      "do_not_disturb": {
+        "name": "Niet storen"
+      },
+      "feed_sound": {
+        "name": "Voergeluid"
+      },
+      "feed_tone": {
+        "name": "Voertoon"
+      },
+      "highlight": {
+        "name": "Huisdiervolging markering"
+      },
+      "indicator_light": {
+        "name": "Indicatielampje"
+      },
+      "camera_light": {
+        "name": "Camera-lichtindicator"
+      },
+      "kitten_mode": {
+        "name": "Kittenmodus"
+      },
+      "lack_liquid_notify": {
+        "name": "Melding bij zuiveringsvloeistoftekort"
+      },
+      "pet_toileting_notif": {
+        "name": "Melding bij toiletgang huisdier"
+      },
+      "lack_sand_notify": {
+        "name": "Melding bij strooiseltekort"
+      },
+      "light": {
+        "name": "Licht"
+      },
+      "light_assist": {
+        "name": "Licht bij reinigen"
+      },
+      "light_weight": {
+        "name": "Lichtgewicht"
+      },
+      "litter_full_notify": {
+        "name": "Melding bij volle afvalbak"
+      },
+      "low_battery_notif": {
+        "name": "Melding bij lage batterij"
+      },
+      "microphone": {
+        "name": "Microfoon"
+      },
+      "move_notif": {
+        "name": "Melding bij beweging"
+      },
+      "night_vision": {
+        "name": "Nachtzicht"
+      },
+      "periodic_cleaning": {
+        "name": "Periodiek reinigen"
+      },
+      "periodic_deodorizing": {
+        "name": "Periodieke geurverwijdering"
+      },
+      "pet_eat_notif": {
+        "name": "Melding bij eten huisdier"
+      },
+      "pet_in_notify": {
+        "name": "Melding bij toiletgang huisdier"
+      },
+      "pet_tracking": {
+        "name": "Huisdiervolging"
+      },
+      "pet_visit_notif": {
+        "name": "Melding bij bezoek huisdier"
+      },
+      "power": {
+        "name": "Stroom"
+      },
+      "proximity_sensor": {
+        "name": "Sensormodus"
+      },
+      "refill_notif": {
+        "name": "Melding bij navulbehoefte"
+      },
+      "sand_saving": {
+        "name": "Strooisel besparen"
+      },
+      "shortage_alarm": {
+        "name": "Tekortmelding"
+      },
+      "surplus_control": {
+        "name": "Overschotbeheer"
+      },
+      "system_notification": {
+        "name": "Systeemgeluid"
+      },
+      "video_timestamp": {
+        "name": "Tijdstempel weergeven"
+      },
+      "voice_dispense": {
+        "name": "Spraakverstrekking"
+      },
+      "waste_covering": {
+        "name": "Afvalbedekking"
+      },
+      "work_log_notify": {
+        "name": "Melding bij uitvoeren geplande taken"
+      },
+      "toilet_light": {
+        "name": "Licht bij toiletgang"
+      },
+      "privacy_mode": {
+        "name": "Privacymodus"
+      },
+      "work_notify": {
+        "name": "Melding bij apparaatreinigen"
+      },
+      "privacy_camera_off": {
+        "name": "Privacy: camera uit"
+      },
+      "privacy_camera_inward": {
+        "name": "Privacy: camera naar binnen"
+      },
+      "privacy_microphone_off": {
+        "name": "Privacy: microfoon uit"
+      },
+      "ai_ph_detection": {
+        "name": "AI pH-detectie"
+      },
+      "ai_yowling": {
+        "name": "AI miauwen detectie"
+      }
+    },
+    "light": {
+      "light": {
+        "name": "Licht"
+      }
+    },
+    "camera": {
+      "camera": {
+        "name": "Camerastream"
+      }
+    },
+    "text": {
+      "manual_feed_dual_h1": {
+        "name": "Handmatig voeren bak 1"
+      },
+      "manual_feed_dual_h2": {
+        "name": "Handmatig voeren bak 2"
+      },
+      "manual_feed_single": {
+        "name": "Handmatig voeren"
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "always_on_stream": "Altijd-actieve heruitzending",
+          "region": "Regio",
+          "time_zone": "Tijdzone"
+        },
+        "data_description": {
+          "always_on_stream": "Houd de interne heruitzendsessie voorverwarmd zodat browserweergave, WHEP-clients en algemene streamconsumenten van deze camera snel kunnen verbinden. De heruitzendsessie kan ook worden hergebruikt door andere consumenten. Dit houdt één upstream-sessie actief en gebruikt meer apparaat- en cloudbronnen."
+        },
+        "sections": {
+          "bluetooth_options": {
+            "data": {
+              "ble_relay_enabled": "Bluetooth-relay inschakelen",
+              "scan_interval_bluetooth": "Bluetooth verversingsinterval (minuten)"
+            },
+            "data_description": {
+              "ble_relay_enabled": "Indien uitgeschakeld, worden fonteingupdates alleen uitgevoerd wanneer het apparaat via de app wordt ververst."
+            },
+            "description": "Deze opties zijn alleen effectief als u een fontein heeft en ten minste één apparaat dat als bluetooth-relay kan fungeren (bijv. voederautomaat, kattenbak). Raadpleeg de Petkit-app voor meer informatie.",
+            "name": "Bluetooth-opties"
+          },
+          "medias_options": {
+            "data": {
+              "delete_media_after": "Media verwijderen na (dagen)",
+              "media_dl_image": "Afbeeldingen ophalen",
+              "media_dl_video": "Video's ophalen",
+              "media_ev_type": "Gebeurtenistype voor download",
+              "media_path": "Mediapad",
+              "scan_interval_media": "Media verversingsinterval (minuten)"
+            },
+            "data_description": {
+              "delete_media_after": "Gedownloade media verwijderen na het opgegeven aantal dagen. (0 = nooit verwijderen)",
+              "media_dl_image": "Download alle afbeeldingen van uw apparaten, gefilterd op de onderstaande geselecteerde gebeurtenissen (geen actief Care+ abonnement vereist).",
+              "media_dl_video": "Download alle video's van uw apparaten, gefilterd op de onderstaande geselecteerde gebeurtenissen. (vereist een actief Care+ abonnement)",
+              "media_path": "Pad waar de media wordt opgeslagen. Indien niet opgegeven, wordt de media opgeslagen in de /media Home Assistant-map.",
+              "scan_interval_media": "Interval voor het downloaden van nieuwe media (afbeeldingen en video's) van Petkit-servers."
+            },
+            "description": "Deze opties zijn alleen effectief als u ten minste één apparaat heeft (bijv. voederautomaat, kattenbak) dat afbeeldingen en video's kan opnemen",
+            "name": "Media-opties"
+          }
+        },
+        "title": "Petkit integratie configuratie"
+      }
+    }
+  }
+}
