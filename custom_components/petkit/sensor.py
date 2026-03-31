@@ -895,8 +895,15 @@ class PetkitSensor(PetkitEntity, RestoreSensor):
         device_data = self.coordinator.data.get(self.device.id)
         if device_data:
             value = self.entity_description.value(device_data)
-            if value is not None and self.entity_description.restore_state:
-                self._restored_native_value = value
+            if self.entity_description.restore_state:
+                # Update the restored value when we have a meaningful reading,
+                # otherwise fall back to the last restored value if available.
+                if value is not None:
+                    self._restored_native_value = value
+                    return value
+                if self._restored_native_value is not None:
+                    return self._restored_native_value
+                return None
             return value
         if self.entity_description.restore_state:
             return self._restored_native_value
