@@ -884,7 +884,9 @@ class PetkitSensor(PetkitEntity, RestoreSensor):
         """Restore last known state on startup."""
         await super().async_added_to_hass()
         if self.entity_description.restore_state:
-            if (last_sensor_data := await self.async_get_last_sensor_data()) is not None:
+            if (
+                last_sensor_data := await self.async_get_last_sensor_data()
+            ) is not None:
                 self._restored_native_value = last_sensor_data.native_value
 
     @property
