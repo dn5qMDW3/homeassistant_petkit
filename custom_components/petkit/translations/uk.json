@@ -18,14 +18,35 @@
           "time_zone": "Це поле заповнене автоматично на основі конфігурації Home Assistant. Якщо потрібен інший часовий пояс, виберіть його зі списку.",
           "username": "Введіть електронну пошту (або ID, якщо Ви з Китаю)"
         },
-        "description": "Будь ласка, введіть дані від Вашого облікового запису PetKit."
+        "description": "Будь ласка, введіть дані від Вашого облікового запису PetKit. НЕ використовуйте той самий обліковий запис, що й у програмі PetKit на смартфоні. Зверніться до документації для отримання додаткової інформації."
       }
     }
   },
   "entity": {
     "binary_sensor": {
+      "yowling_detected": {
+        "name": "Виявлено гучне нявчання"
+      },
+      "abnormal_ph_detected": {
+        "name": "Виявлено аномальний pH"
+      },
+      "soft_stool_detected": {
+        "name": "Виявлено м'який стілець"
+      },
       "battery": {
         "name": "Батарейка"
+      },
+      "weight_error": {
+        "name": "Помилка ваги"
+      },
+      "pet_error": {
+        "name": "Помилка вихованця"
+      },
+      "light": {
+        "name": "Підсвічування"
+      },
+      "spray": {
+        "name": "Розпилювач"
       },
       "battery_installed": {
         "name": "Батарейку встановлено"
@@ -33,11 +54,20 @@
       "camera_status": {
         "name": "Статус камери"
       },
+      "n60_deodorize_presence": {
+        "name": "Стан модуля дезодоратора N60"
+      },
       "care_plus_subscription": {
         "name": "Передплата Care+"
       },
       "deodorizer": {
         "name": "Дезодоратор"
+      },
+      "deodorization_running": {
+        "name": "Дезодорація"
+      },
+      "do_not_disturb_state": {
+        "name": "Не турбувати"
       },
       "eating": {
         "name": "Поїдання корму"
@@ -60,8 +90,11 @@
       "lack_warning": {
         "name": "Попередження про низький рівень води"
       },
-      "liquid_empty": {
-        "name": "Попередження про закінчення дезодоруючої рідини"
+      "pet_detected": {
+        "name": "Вихованець п'є"
+      },
+      "pump_running": {
+        "name": "Насос"
       },
       "liquid_lack": {
         "name": "Попередження про нестачу дезодоруючої рідини"
@@ -110,11 +143,20 @@
       "action_pause": {
         "name": "Дія : Припинити"
       },
+      "pause": {
+        "name": "Призупинити"
+      },
+      "resume": {
+        "name": "Продовжити"
+      },
       "action_reset": {
         "name": "Дія : Скидання"
       },
       "call_pet": {
         "name": "Підкликати вихованця"
+      },
+      "play_sound": {
+        "name": "Відтворити звук"
       },
       "cancel_manual_feed": {
         "name": "Скасувати примусове харчування"
@@ -134,14 +176,35 @@
       "reset_desiccant": {
         "name": "Скинути осушувач"
       },
-      "reset_odor_eliminator": {
-        "name": "Скинути усувач запаху"
+      "reset_n50_odor_eliminator": {
+        "name": "Скинути усувач запаху N50"
+      },
+      "reset_n60_odor_eliminator": {
+        "name": "Скинути усувач запаху N60"
       },
       "start_maintenance": {
         "name": "Обслуговування : Почати"
       },
       "start_scoop": {
         "name": "Прибрати відходи"
+      },
+      "level_litter": {
+        "name": "Вирівняти наповнювач"
+      },
+      "reset_filter": {
+        "name": "Скинути фільтр"
+      },
+      "ptz_left": {
+        "name": "PTZ Ліворуч"
+      },
+      "ptz_right": {
+        "name": "PTZ Праворуч"
+      },
+      "ptz_stop": {
+        "name": "PTZ Стоп"
+      },
+      "ptz_flip": {
+        "name": "PTZ Перевернути"
       }
     },
     "fan": {
@@ -161,6 +224,15 @@
       },
       "last_visit_event": {
         "name": "Останнє відвідування"
+      },
+      "dish_before": {
+        "name": "Миска до"
+      },
+      "dish_after": {
+        "name": "Миска після"
+      },
+      "waste_check": {
+        "name": "Перевірка відходів"
       }
     },
     "number": {
@@ -190,6 +262,12 @@
       "litter_type": {
         "name": "Тип наповнювача"
       },
+      "working_mode": {
+        "name": "Режим роботи"
+      },
+      "led_brightness": {
+        "name": "Яскравість LED"
+      },
       "move_detection_sensitivity": {
         "name": "Чутливість виявлення руху"
       },
@@ -201,11 +279,29 @@
       }
     },
     "sensor": {
+      "urine_measured_ph": {
+        "name": "Виміряний pH сечі"
+      },
+      "device_id": {
+        "name": "ID пристрою"
+      },
+      "pet_last_urination_date": {
+        "name": "Останнє сечовипускання"
+      },
+      "pet_last_defecation_date": {
+        "name": "Остання дефекація"
+      },
       "air_purified": {
         "name": "Повітря очищений"
       },
       "amount_eaten": {
         "name": "Кількість з'їденого корму"
+      },
+      "battery_voltage": {
+        "name": "Напруга батареї"
+      },
+      "supply_voltage": {
+        "name": "Напруга живлення"
       },
       "average_time": {
         "name": "Середня кількість використовувань"
@@ -216,8 +312,11 @@
       "battery_level": {
         "name": "Рівень заряду батареї"
       },
-      "deodorant_left_days": {
-        "name": "Термін заміни дезодоратора"
+      "odor_eliminator_n50_left_days": {
+        "name": "Усувач запаху N50, днів залишилось"
+      },
+      "odor_eliminator_n60_left_days": {
+        "name": "Усувач запаху N60, днів залишилось"
       },
       "deodorizer_level": {
         "name": "Рівень дезодоратора"
@@ -236,6 +335,9 @@
       },
       "error": {
         "name": "Помилка"
+      },
+      "battery": {
+        "name": "Батарейка"
       },
       "error_message": {
         "name": "Помилка",
@@ -277,7 +379,7 @@
           "auto_cleaning_failed_hall_l": "Помилка автоматичного очищення: hall L",
           "auto_cleaning_failed_hall_t": "Помилка автоматичного очищення: hall T",
           "auto_cleaning_terminated": "Автоматична очистка перервана",
-          "auto_odor_failed": "Автоматична дезодорація завершена",
+          "auto_odor_failed": "Помилка автоматичної дезодорації",
           "clean_over": "Очищення завершено",
           "deodorant_finished": "Дезодорація завершена",
           "deodorant_finished_liquid_lack": "Дезодорація завершена: низький рівень рідини",
@@ -318,7 +420,7 @@
         }
       },
       "litter_level": {
-        "name": "Вирівняти наповнювач"
+        "name": "Рівень наповнювача"
       },
       "litter_state": {
         "name": "Стан",
@@ -332,7 +434,7 @@
           "cleaning_paused_pet_using": "Очищення припинено - Вихованець використовує",
           "cleaning_paused_system_error": "Очищення припинено - Системна помилка",
           "dumping": "Очищення від наповнювача",
-          "dumping_paused":"Очищення від наповнювача призупинено",
+          "dumping_paused": "Очищення від наповнювача призупинено",
           "dumping_paused_cover": "Очищення від наповнювача припинено - Кришка не закрита",
           "dumping_paused_pet_approach": "Очищення від наповнювача припинено - Вихованець поблизу",
           "dumping_paused_pet_entered": "Очищення від наповнювача призупинено - Вихованець усередині",
@@ -359,7 +461,7 @@
         }
       },
       "litter_weight": {
-        "name": "Маса ноповника"
+        "name": "Маса наповнювача"
       },
       "manual_dispensed": {
         "name": "Примусове годування"
@@ -378,6 +480,9 @@
       },
       "pet_last_use_date": {
         "name": "Дата останнього використання"
+      },
+      "connection_state": {
+        "name": "Стан підключення"
       },
       "pet_last_use_duration": {
         "name": "Тривалість останнього використання"
@@ -406,8 +511,8 @@
       "rssi": {
         "name": "Потужність сигналу"
       },
-      "smart_spray_battery": {
-        "name": "Заряд дезодоратора"
+      "spray_times": {
+        "name": "Кількість розпилень"
       },
       "spray_deodorant_liquid": {
         "name": "Рівень рідини дезодоратора"
@@ -444,13 +549,42 @@
       },
       "total_time": {
         "name": "Всього часу використання"
+      },
+      "garbage_bag_box_state": {
+        "name": "Контейнер для сміттєвих пакетів",
+        "state": {
+          "normal": "Нормальний",
+          "running_out": "Закінчується",
+          "used_up": "Вичерпано",
+          "expired": "Прострочено",
+          "not_available": "Недоступно",
+          "not_installed": "Не встановлено"
+        }
+      },
+      "purification_n60_left_days": {
+        "name": "Очищення N60, днів залишилось"
+      },
+      "last_pack_time": {
+        "name": "Час останньої упаковки"
+      },
+      "last_bag_replacement_time": {
+        "name": "Остання заміна пакету"
+      },
+      "sand_tray_left_days": {
+        "name": "Піщаний лоток, днів залишилось"
       }
     },
     "switch": {
+      "soft_stool": {
+        "name": "AI виявлення м'якого стільця"
+      },
+      "soft_stool_stop_cleaning": {
+        "name": "Зупинити очищення при виявленні м'якого стільця"
+      },
       "auto_clean": {
         "name": "Автоматичне очищення"
       },
-      "auto_odor": {
+      "auto_deodor": {
         "name": "Автоматична дезодорація"
       },
       "avoid_repeat_clean": {
@@ -463,7 +597,7 @@
         "name": "Блокування від дітей"
       },
       "cont_rotation": {
-        "name": "Безкіне обертання"
+        "name": "Безперервне обертання"
       },
       "deep_cleaning": {
         "name": "Глибоке очищення"
@@ -471,8 +605,11 @@
       "deep_deodor": {
         "name": "Глибока дезодорація"
       },
-      "deodorant_notify": {
-        "name": "Повідомлення про необхідність заміни дезодоранту"
+      "deodorant_n50_notify": {
+        "name": "Повідомлення про необхідність заміни N50"
+      },
+      "deodorant_n60_notify": {
+        "name": "Повідомлення про необхідність заміни N60"
       },
       "desiccant_notif": {
         "name": "Повідомлення про необхідність заміни осушувача"
@@ -498,17 +635,26 @@
       "indicator_light": {
         "name": "Індикатор"
       },
+      "camera_light": {
+        "name": "Індикатор камери"
+      },
       "kitten_mode": {
         "name": "Режим кошеняти"
       },
       "lack_liquid_notify": {
         "name": "Повідомлення про низький рівень очищувальної рідини"
       },
+      "pet_toileting_notif": {
+        "name": "Повідомлення про використання лотка вихованцем"
+      },
       "lack_sand_notify": {
         "name": "Повідомлення про низький рівень наповнювача"
       },
       "light": {
         "name": "Підсвічування"
+      },
+      "light_assist": {
+        "name": "Підсвічування під час очищення"
       },
       "light_weight": {
         "name": "Виявлення низької ваги"
@@ -531,7 +677,7 @@
       "periodic_cleaning": {
         "name": "Періодичне очищення"
       },
-      "periodic_odor": {
+      "periodic_deodorizing": {
         "name": "Періодична дезодорація"
       },
       "pet_eat_notif": {
@@ -549,8 +695,14 @@
       "power": {
         "name": "Харчування"
       },
+      "proximity_sensor": {
+        "name": "Режим датчика"
+      },
       "refill_notif": {
         "name": "Повідомлення про необхідність поповнення"
+      },
+      "sand_saving": {
+        "name": "Економія наповнювача"
       },
       "shortage_alarm": {
         "name": "Сигнал при нестачі"
@@ -573,13 +725,39 @@
       "work_log_notify": {
         "name": "Повідомлення про періодичні завдання"
       },
+      "toilet_light": {
+        "name": "Підсвічування під час використання лотка"
+      },
+      "privacy_mode": {
+        "name": "Режим конфіденційності"
+      },
       "work_notify": {
         "name": "Повідомлення про очищення"
+      },
+      "privacy_camera_off": {
+        "name": "Конфіденційність: камера вимкнена"
+      },
+      "privacy_camera_inward": {
+        "name": "Конфіденційність: камера всередину"
+      },
+      "privacy_microphone_off": {
+        "name": "Конфіденційність: мікрофон вимкнений"
+      },
+      "ai_ph_detection": {
+        "name": "AI виявлення pH"
+      },
+      "ai_yowling": {
+        "name": "AI виявлення гучного нявчання"
       }
     },
     "light": {
       "light": {
         "name": "Підсвічування"
+      }
+    },
+    "camera": {
+      "camera": {
+        "name": "Потік камери"
       }
     },
     "text": {
@@ -598,19 +776,18 @@
     "step": {
       "init": {
         "data": {
+          "always_on_stream": "Постійна ретрансляція",
           "region": "Регіон",
-          "scan_interval": "Період опитування за замовчуванням (секунди)",
-          "smart_polling": "Розумне опитування",
           "time_zone": "Часовий пояс"
         },
         "data_description": {
-          "smart_polling": "Розумне опитування підлаштовує під події/використання."
+          "always_on_stream": "Тримати внутрішній сеанс ретрансляції попередньо підключеним, щоб перегляд у браузері, WHEP-клієнти та загальні споживачі потоку цієї камери могли швидко підключатися. Потік ретрансляції також може повторно використовуватися іншими споживачами. Це підтримує один активний вхідний сеанс і використовує більше ресурсів пристрою та хмари."
         },
         "sections": {
           "bluetooth_options": {
             "data": {
               "ble_relay_enabled": "Увімкнути Bluetooth реле",
-              "scan_interval_bluetooth": "Періодично зв'язуватися з пристроями через Bluetooth (Хвилини)"
+              "scan_interval_bluetooth": "Інтервал оновлення Bluetooth (хвилин)"
             },
             "data_description": {
               "ble_relay_enabled": "Якщо вимкнено, стан фонтану оновлюється лише при відключенні через смартфон."
