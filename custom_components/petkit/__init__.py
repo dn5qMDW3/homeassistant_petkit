@@ -37,7 +37,7 @@ from .coordinator import (
 )
 from .data import PetkitData
 from .iot_mqtt import PetkitIotMqttListener
-from .services import async_register_services, async_unregister_services
+from .services import async_register_services
 from .whep_mirror import (
     PetkitInternalWhepMirrorView,
     PetkitWhepMirrorView,

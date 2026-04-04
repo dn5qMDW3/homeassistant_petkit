@@ -100,8 +100,8 @@ def _parse_time_string(time_str: str) -> int:
     try:
         hours = int(parts[0])
         minutes = int(parts[1])
-    except ValueError:
-        raise HomeAssistantError(f"Invalid time format: {time_str}. Use HH:MM")
+    except ValueError as err:
+        raise HomeAssistantError(f"Invalid time format: {time_str}. Use HH:MM") from err
     if not (0 <= hours <= 23 and 0 <= minutes <= 59):
         raise HomeAssistantError(f"Time out of range: {time_str}")
     return hours * 3600 + minutes * 60
@@ -110,7 +110,7 @@ def _parse_time_string(time_str: str) -> int:
 async def async_get_feeding_schedule(hass: HomeAssistant, call: ServiceCall) -> dict:
     """Handle get_feeding_schedule service call."""
     device_id = call.data[ATTR_DEVICE_ID]
-    client, feeder, coordinator = _find_feeder(hass, device_id)
+    _client, feeder, coordinator = _find_feeder(hass, device_id)
 
     # Get fresh data from coordinator
     updated = coordinator.data.get(feeder.id)
