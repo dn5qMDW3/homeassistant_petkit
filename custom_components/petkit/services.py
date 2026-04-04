@@ -11,9 +11,8 @@ from pypetkitapi import (
     DEVICES_FEEDER,
     Feeder,
     FeederCommand,
-    FeedDailyList,
-    FeedItem,
 )
+from pypetkitapi.feeder_container import FeedDailyList, FeedItem
 
 from homeassistant.core import HomeAssistant, ServiceCall, SupportsResponse
 from homeassistant.exceptions import HomeAssistantError
