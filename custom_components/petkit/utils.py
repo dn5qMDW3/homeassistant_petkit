@@ -1,6 +1,5 @@
 """Util functions for the Petkit integration."""
 
-import datetime as dt_mod
 from datetime import datetime, time
 
 from pypetkitapi import D4S, D4SH, Feeder, LitterRecord, RecordsItems, WorkState
