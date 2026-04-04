@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.25.5 (2026-04-04)
+
+### Other
+
+- Remove unused datetime alias import in Petkit utils
+  ([`33c862f`](https://github.com/dn5qMDW3/homeassistant_petkit/commit/33c862fe268438dda5f1854b2b53d005cd570de5))
+
+
 ## v1.25.4 (2026-04-04)
 
 ### Other
