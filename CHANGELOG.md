@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.25.4 (2026-04-04)
+
+### Other
+
+- Remove unused service unregistration and improve error handling in Petkit integration
+  ([`7d6ea0d`](https://github.com/dn5qMDW3/homeassistant_petkit/commit/7d6ea0d2ea96a90d809f43b27805b56f0bd6af6a))
+
+
 ## v1.25.3 (2026-04-04)
 
 ### Other
