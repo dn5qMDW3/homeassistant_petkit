@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.25.3 (2026-04-04)
+
+### Other
+
+- Add calendar platform and services for feeding schedules in Petkit integration
+  ([`638fa31`](https://github.com/dn5qMDW3/homeassistant_petkit/commit/638fa31229bb4693c116c9d21f1f311b46c10c9e))
+
+
 ## v1.25.2 (2026-04-04)
 
 ### Other
