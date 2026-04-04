@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v1.25.7 (2026-04-04)
+
+### Other
+
+- Optimize imports in Petkit services to use explicit module reference for FeedDailyList and
+  FeedItem
+  ([`a9001eb`](https://github.com/dn5qMDW3/homeassistant_petkit/commit/a9001eb8006cd9a9a35f7b8fe5b75db4bc69b43b))
+
+
 ## v1.25.5 (2026-04-04)
 
 ### Other
