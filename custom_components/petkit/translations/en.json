@@ -207,6 +207,11 @@
         "name": "PTZ Flip"
       }
     },
+    "calendar": {
+      "feeding_schedule": {
+        "name": "Feeding schedule"
+      }
+    },
     "fan": {
       "air_purifier_fan": {
         "name": "Air purifier"
@@ -508,6 +513,14 @@
       "raw_distribution_data": {
         "name": "RAW distribution data"
       },
+      "feeding_schedule_info": {
+        "name": "Feeding schedule info",
+        "state": {
+          "active": "Active",
+          "suspended": "Suspended",
+          "no_schedule": "No schedule"
+        }
+      },
       "rssi": {
         "name": "RSSI"
       },
@@ -748,6 +761,9 @@
       },
       "ai_yowling": {
         "name": "AI Yowling detection"
+      },
+      "feeding_schedule": {
+        "name": "Feeding schedule"
       }
     },
     "light": {

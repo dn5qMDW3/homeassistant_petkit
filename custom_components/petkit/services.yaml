@@ -1,0 +1,118 @@
+get_feeding_schedule:
+  name: Get feeding schedule
+  description: Get the full feeding schedule for a Petkit feeder device.
+  fields:
+    device_id:
+      name: Device
+      description: The Petkit feeder device.
+      required: true
+      selector:
+        device:
+          integration: petkit
+
+set_feeding_item:
+  name: Set feeding item
+  description: Add or update a scheduled feeding item on a Petkit feeder.
+  fields:
+    device_id:
+      name: Device
+      description: The Petkit feeder device.
+      required: true
+      selector:
+        device:
+          integration: petkit
+    time:
+      name: Time
+      description: Feeding time in HH:MM format (24-hour).
+      required: true
+      example: "08:00"
+      selector:
+        text:
+    amount:
+      name: Amount (single hopper)
+      description: Amount of food in grams (for single-hopper feeders).
+      selector:
+        number:
+          min: 0
+          max: 200
+          unit_of_measurement: g
+    amount1:
+      name: Amount hopper 1
+      description: Amount from hopper 1 in portions (for dual-hopper feeders).
+      selector:
+        number:
+          min: 0
+          max: 10
+    amount2:
+      name: Amount hopper 2
+      description: Amount from hopper 2 in portions (for dual-hopper feeders).
+      selector:
+        number:
+          min: 0
+          max: 10
+    days:
+      name: Days
+      description: Days of the week (1=Monday, 7=Sunday). Defaults to all days.
+      selector:
+        select:
+          multiple: true
+          options:
+            - label: Monday
+              value: "1"
+            - label: Tuesday
+              value: "2"
+            - label: Wednesday
+              value: "3"
+            - label: Thursday
+              value: "4"
+            - label: Friday
+              value: "5"
+            - label: Saturday
+              value: "6"
+            - label: Sunday
+              value: "7"
+    name:
+      name: Name
+      description: Optional name/label for this feeding slot.
+      selector:
+        text:
+
+remove_feeding_item:
+  name: Remove feeding item
+  description: Remove a scheduled feeding item from a Petkit feeder.
+  fields:
+    device_id:
+      name: Device
+      description: The Petkit feeder device.
+      required: true
+      selector:
+        device:
+          integration: petkit
+    time:
+      name: Time
+      description: Feeding time to remove in HH:MM format (24-hour).
+      required: true
+      example: "08:00"
+      selector:
+        text:
+    days:
+      name: Days
+      description: Days to remove from (1=Monday, 7=Sunday). Defaults to all days.
+      selector:
+        select:
+          multiple: true
+          options:
+            - label: Monday
+              value: "1"
+            - label: Tuesday
+              value: "2"
+            - label: Wednesday
+              value: "3"
+            - label: Thursday
+              value: "4"
+            - label: Friday
+              value: "5"
+            - label: Saturday
+              value: "6"
+            - label: Sunday
+              value: "7"

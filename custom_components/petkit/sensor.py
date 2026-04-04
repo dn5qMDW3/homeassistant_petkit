@@ -52,7 +52,7 @@ from homeassistant.const import (
 
 from .const import BATTERY_LEVEL_MAP, DEVICE_STATUS_MAP, DOMAIN, LOGGER, NO_ERROR
 from .entity import PetKitDescSensorBase, PetkitEntity
-from .utils import get_raw_feed_plan, map_litter_event, map_work_state
+from .utils import get_raw_feed_plan, get_schedule_attributes, map_litter_event, map_work_state
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -72,6 +72,7 @@ class PetKitSensorDesc(PetKitDescSensorBase, SensorEntityDescription):
     restore_state: bool = False
     bluetooth_coordinator: bool = False
     smart_poll_trigger: Callable[[PetkitDevices], bool] | None = None
+    extra_attributes: Callable[[PetkitDevices], dict] | None = None
 
 
 def get_liquid_value(device):
@@ -337,6 +338,27 @@ SENSOR_MAPPING: dict[type[PetkitDevices], list[PetKitSensorDesc]] = {
             entity_category=EntityCategory.DIAGNOSTIC,
             value=lambda device: get_raw_feed_plan(device.device_records),
             force_add=[D4H, D4SH],
+        ),
+        PetKitSensorDesc(
+            key="Feeding schedule info",
+            translation_key="feeding_schedule_info",
+            entity_category=EntityCategory.DIAGNOSTIC,
+            value=lambda device: (
+                "suspended"
+                if device.multi_feed_item
+                and device.multi_feed_item.feed_daily_list
+                and all(
+                    d.suspended == 1
+                    for d in device.multi_feed_item.feed_daily_list
+                )
+                else (
+                    "active"
+                    if device.multi_feed_item
+                    and device.multi_feed_item.feed_daily_list
+                    else "no_schedule"
+                )
+            ),
+            extra_attributes=lambda device: get_schedule_attributes(device),
         ),
     ],
     Litter: [
@@ -909,6 +931,18 @@ class PetkitSensor(PetkitEntity, RestoreSensor):
             return value
         if self.entity_description.restore_state:
             return self._restored_native_value
+        return None
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any] | None:
+        """Return extra state attributes for sensors that provide them."""
+        if self.entity_description.extra_attributes:
+            device_data = self.coordinator.data.get(self.device.id)
+            if device_data:
+                try:
+                    return self.entity_description.extra_attributes(device_data)
+                except (AttributeError, TypeError):
+                    return None
         return None
 
     @property

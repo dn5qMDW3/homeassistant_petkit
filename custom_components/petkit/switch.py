@@ -9,8 +9,10 @@ from datetime import timedelta
 from typing import TYPE_CHECKING, Any
 
 from pypetkitapi import (
+    DEVICES_FEEDER,
     DEVICES_LITTER_BOX,
     FEEDER_MINI,
+    FeederCommand,
     LITTER_WITH_CAMERA,
     T7,
     DeviceAction,
@@ -387,6 +389,28 @@ SWITCH_MAPPING: dict[type[PetkitDevices], list[PetKitSwitchDesc]] = {
                 device.id, DeviceCommand.UPDATE_SETTING, {"settings.desiccantNotify": 0}
             ),
             only_for_types=[FEEDER_MINI],
+        ),
+        PetKitSwitchDesc(
+            key="Feeding schedule",
+            translation_key="feeding_schedule",
+            value=lambda device: (
+                1
+                if device.multi_feed_item
+                and device.multi_feed_item.feed_daily_list
+                and any(
+                    d.suspended == 0
+                    for d in device.multi_feed_item.feed_daily_list
+                )
+                else 0
+            ),
+            entity_category=EntityCategory.CONFIG,
+            turn_on=lambda api, device: api.send_api_request(
+                device.id, FeederCommand.RESTORE_FEED
+            ),
+            turn_off=lambda api, device: api.send_api_request(
+                device.id, FeederCommand.SUSPEND_FEED
+            ),
+            only_for_types=DEVICES_FEEDER,
         ),
     ],
     Litter: [

@@ -1,10 +1,95 @@
 """Util functions for the Petkit integration."""
 
-from datetime import datetime
+import datetime as dt_mod
+from datetime import datetime, time
 
-from pypetkitapi import LitterRecord, RecordsItems, WorkState
+from pypetkitapi import D4S, D4SH, Feeder, LitterRecord, RecordsItems, WorkState
 
 from .const import EVENT_MAPPING, LOGGER
+
+# PETKIT day mapping: 1=Monday, 2=Tuesday, ..., 7=Sunday
+PETKIT_DAY_NAMES = {
+    1: "Monday",
+    2: "Tuesday",
+    3: "Wednesday",
+    4: "Thursday",
+    5: "Friday",
+    6: "Saturday",
+    7: "Sunday",
+}
+
+
+def seconds_to_time(seconds: int) -> time:
+    """Convert seconds since midnight to a time object."""
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    return time(hour=min(hours, 23), minute=min(minutes, 59))
+
+
+def time_to_seconds(t: time) -> int:
+    """Convert a time object to seconds since midnight."""
+    return t.hour * 3600 + t.minute * 60
+
+
+def petkit_day_to_weekday(petkit_day: int) -> int:
+    """Convert PETKIT day (1=Monday..7=Sunday) to Python weekday (0=Monday..6=Sunday)."""
+    return petkit_day - 1
+
+
+def weekday_to_petkit_day(weekday: int) -> int:
+    """Convert Python weekday (0=Monday..6=Sunday) to PETKIT day (1..7)."""
+    return weekday + 1
+
+
+def is_dual_hopper(device: Feeder) -> bool:
+    """Check if a feeder is a dual-hopper model."""
+    device_type = getattr(device.device_nfo, "device_type", "")
+    return device_type in [D4S, D4SH]
+
+
+def get_schedule_attributes(device: Feeder) -> dict:
+    """Convert a feeder's multi_feed_item into structured schedule attributes."""
+    mfi = device.multi_feed_item
+    if not mfi or not mfi.feed_daily_list:
+        return {
+            "total_daily_items": 0,
+            "is_suspended": True,
+            "schedule": [],
+        }
+
+    dual = is_dual_hopper(device)
+    all_suspended = all(d.suspended == 1 for d in mfi.feed_daily_list)
+    total_items = sum(len(d.items) for d in mfi.feed_daily_list if d.items)
+
+    schedule = []
+    for daily in mfi.feed_daily_list:
+        day_num = int(daily.repeats) if daily.repeats is not None else 0
+        items_list = []
+        if daily.items:
+            for item in daily.items:
+                t = seconds_to_time(item.time) if item.time is not None else time(0, 0)
+                entry = {
+                    "time": t.strftime("%H:%M"),
+                    "name": item.name or "",
+                }
+                if dual:
+                    entry["amount1"] = item.amount1 or 0
+                    entry["amount2"] = item.amount2 or 0
+                else:
+                    entry["amount"] = item.amount or 0
+                items_list.append(entry)
+        schedule.append({
+            "day": day_num,
+            "day_name": PETKIT_DAY_NAMES.get(day_num, f"Day {day_num}"),
+            "suspended": daily.suspended == 1,
+            "items": items_list,
+        })
+
+    return {
+        "total_daily_items": total_items,
+        "is_suspended": all_suspended,
+        "schedule": schedule,
+    }
 
 
 def map_work_state(work_state: WorkState | None) -> str:

@@ -37,6 +37,7 @@ from .coordinator import (
 )
 from .data import PetkitData
 from .iot_mqtt import PetkitIotMqttListener
+from .services import async_register_services, async_unregister_services
 from .whep_mirror import (
     PetkitInternalWhepMirrorView,
     PetkitWhepMirrorView,
@@ -56,6 +57,7 @@ PLATFORMS: list[Platform] = [
     Platform.TEXT,
     Platform.BUTTON,
     Platform.CAMERA,
+    Platform.CALENDAR,
     Platform.NUMBER,
     Platform.SELECT,
     Platform.IMAGE,
@@ -131,6 +133,8 @@ async def async_setup_entry(
 
     entry.runtime_data.mqtt_listener = mqtt_listener
     await mqtt_listener.async_start()
+
+    async_register_services(hass)
 
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     entry.async_on_unload(entry.add_update_listener(async_reload_entry))
