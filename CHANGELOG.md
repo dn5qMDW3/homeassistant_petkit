@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.26.1 (2026-04-17)
+
+### Other
+
+- Update Petkit integration to use git-based `pypetkitapi` dependency and bump version to 1.26.1
+  ([`6dcf6e6`](https://github.com/dn5qMDW3/homeassistant_petkit/commit/6dcf6e6d56662b1b2eb497922f31d1d977937680))
+
+
 ## v1.25.7 (2026-04-04)
 
 ### Other
