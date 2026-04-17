@@ -13,6 +13,7 @@ from pypetkitapi import Feeder
 from homeassistant.components.calendar import CalendarEntity, CalendarEvent
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC, DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
+from homeassistant.util import dt as dt_util
 
 from .const import DOMAIN, LOGGER, POWER_ONLINE_STATE
 from .utils import (
@@ -112,7 +113,7 @@ class PetkitFeedingCalendar(
         if not mfi or not mfi.feed_daily_list:
             return None
 
-        now = datetime.now()
+        now = dt_util.now()
         current_seconds = now.hour * 3600 + now.minute * 60 + now.second
         today_petkit_day = weekday_to_petkit_day(now.weekday())
         dual = is_dual_hopper(updated_device)
@@ -133,7 +134,7 @@ class PetkitFeedingCalendar(
 
                 event_date = now.date() + timedelta(days=day_offset)
                 t = seconds_to_time(item.time)
-                start = datetime.combine(event_date, t)
+                start = datetime.combine(event_date, t, tzinfo=now.tzinfo)
                 end = start + timedelta(minutes=1)
 
                 summary = _format_feed_summary(item, dual)
@@ -163,6 +164,7 @@ class PetkitFeedingCalendar(
         dual = is_dual_hopper(updated_device)
         events: list[CalendarEvent] = []
 
+        tz = dt_util.get_default_time_zone()
         current_date = start_date.date() if isinstance(start_date, datetime) else start_date
         end = end_date.date() if isinstance(end_date, datetime) else end_date
 
@@ -177,7 +179,7 @@ class PetkitFeedingCalendar(
                         continue
 
                     t = seconds_to_time(item.time)
-                    start_dt = datetime.combine(current_date, t)
+                    start_dt = datetime.combine(current_date, t, tzinfo=tz)
                     end_dt = start_dt + timedelta(minutes=1)
 
                     summary = _format_feed_summary(item, dual)
