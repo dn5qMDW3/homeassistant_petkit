@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.26.2 (2026-04-17)
+
+### Other
+
+- Use `dt_util` for timezone-aware datetime handling in Petkit calendar integration
+  ([`d7b7766`](https://github.com/dn5qMDW3/homeassistant_petkit/commit/d7b7766d3abfa0b5990b9bd9cc27e8200cb20908))
+
+
 ## v1.26.1 (2026-04-17)
 
 ### Other
