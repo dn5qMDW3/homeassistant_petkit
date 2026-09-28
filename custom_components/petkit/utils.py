@@ -6,6 +6,83 @@ from pypetkitapi import LitterRecord, RecordsItems, WorkState
 
 from .const import EVENT_MAPPING, LOGGER
 
+# T6 warnings the PetKit app shows: (code, message). The codes are stable
+# identifiers for automations; the messages are for display.
+T6_WARNINGS = {
+    "pack_ok": ("pack_box_u", "Packing complete, please take out the trash bag"),
+    "box_broken": ("box_state_destroy", "Trash bag broken, please clean the waste bin"),
+    "ring_missing": ("packbox_U", "Refill ring not installed"),
+    "bags_out": ("packbox_E", "Out of trash bags, please replace the refill ring"),
+    "ring_expired": ("packbox_I", "Refill ring expired, please replace it"),
+    "ring_unusable": ("package_state4", "Refill ring is not usable"),
+    "cover_missing": ("hallP", "Refill ring cover not installed"),
+    "trunk_missing": ("hallT", "Trunk not installed"),
+    "trunk_blocked": ("trunk_F", "Foreign objects in the trunk, please check"),
+    "weight": ("t6_error_roll_weight", "Long-term weight increase in the cylinder"),
+    "unbagged": ("box_state_un_bagging", "Waste bin not bagged, please check"),
+    "bagging_failed": ("package_U", "Auto-refilling failure, please check"),
+    "pack_failed": ("packERR", "Packing failure, please check"),
+    "door_open": ("t6_hallSO", "Sealed door open"),
+}
+
+
+def t6_warnings(litter) -> list[tuple[str, str]]:
+    """Return the T6's active warnings, as the PetKit app shows them.
+
+    Order and conditions match the app's warning list, including when the
+    sealed-door warning is held back (while a job that opens it runs, or while
+    a packing/bagging problem is already being reported).
+    """
+    state = getattr(litter, "state", None)
+    if state is None:
+        return []
+    bagging = state.bagging_state
+    pack = state.pack_state
+    store = state.box_store_state
+    package = state.package_state
+    pack_done = bagging == -1 and pack == 1 and store not in (1, 2)
+
+    active = []
+    if pack_done:
+        active.append("pack_ok")
+    if pack is not None and store == 1:
+        active.append("box_broken")
+    active += [
+        name
+        for name, value in (
+            ("ring_missing", 5),
+            ("bags_out", 2),
+            ("ring_expired", 3),
+            ("ring_unusable", 4),
+        )
+        if package == value
+    ]
+    if state.pi_ins == 1:
+        active.append("cover_missing")
+    if state.top_ins == 1:
+        active.append("trunk_missing")
+    if state.trunk_state == 1:
+        active.append("trunk_blocked")
+    if state.weight_state == 1:
+        active.append("weight")
+    if pack is not None and store == 2 and bagging != 0:
+        active.append("unbagged")
+    if bagging == 0:
+        active.append("bagging_failed")
+    if pack == 0:
+        active.append("pack_failed")
+
+    if state.seal_door_state == 1:
+        work = state.work_state
+        if work is None:
+            held_back = pack == 0 or bagging == 0 or pack_done or store == 2
+        else:
+            held_back = work.work_mode in (0, 1, 8, 9)
+        if not held_back:
+            active.append("door_open")
+
+    return [T6_WARNINGS[name] for name in active]
+
 
 def map_work_state(work_state: WorkState | None) -> str:
     """Get the state of the litter box.

@@ -157,7 +157,7 @@
         "name": "Low battery"
       },
       "low_power": {
-        "name": "Power"
+        "name": "Low power"
       },
       "manually_paused": {
         "name": "Manually paused"
@@ -716,6 +716,9 @@
       },
       "pet_meals_today": {
         "name": "Meals today"
+      },
+      "warnings": {
+        "name": "Warnings"
       }
     },
     "switch": {

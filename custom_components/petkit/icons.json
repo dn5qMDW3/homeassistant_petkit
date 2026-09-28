@@ -548,6 +548,9 @@
       },
       "total_time": {
         "default": "mdi:timer-sand"
+      },
+      "warnings": {
+        "default": "mdi:alert-circle-outline"
       }
     },
     "switch": {

@@ -66,6 +66,7 @@ from .utils import (
     get_raw_schedule,
     map_litter_event,
     map_work_state,
+    t6_warnings,
 )
 
 if TYPE_CHECKING:
@@ -532,6 +533,16 @@ SENSOR_MAPPING: dict[type[PetkitDevices], list[PetKitSensorDesc]] = {
                 and int(device.package_info.package_record) > 0
                 else None
             ),
+            only_for_types=[T6],
+        ),
+        PetKitSensorDesc(
+            key="Warnings",
+            translation_key="warnings",
+            value=lambda device: len(t6_warnings(device)),
+            attributes=lambda device: {
+                "codes": [code for code, _ in t6_warnings(device)],
+                "messages": [message for _, message in t6_warnings(device)],
+            },
             only_for_types=[T6],
         ),
         PetKitSensorDesc(
