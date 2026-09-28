@@ -125,6 +125,26 @@ def format_pet_date(timestamp):
     return datetime.fromtimestamp(timestamp)
 
 
+ERROR_ATTRIBUTES = ("error_code", "error_level", "error_detail")
+
+
+def error_attributes(device: PetkitDevices) -> dict[str, Any] | None:
+    """Expose the raw error fields that accompany the error message.
+
+    The message alone can't be matched reliably in automations (it is free
+    text, localised by PetKit); the code can. Values are passed through as
+    the API sends them. Only fields the device's state model has are listed,
+    so the keys stay stable for a given device.
+    """
+    state = getattr(device, "state", None)
+    if state is None:
+        return None
+    attrs = {
+        key: getattr(state, key) for key in ERROR_ATTRIBUTES if hasattr(state, key)
+    }
+    return attrs or None
+
+
 COMMON_ENTITIES = [
     PetKitSensorDesc(
         key="Device status",
@@ -152,6 +172,7 @@ COMMON_ENTITIES = [
             if hasattr(device.state, "error_msg") and device.state.error_msg is not None
             else NO_ERROR
         ),
+        attributes=lambda device: error_attributes(device),
         force_add=[K2, K3, T7],
     ),
     PetKitSensorDesc(
